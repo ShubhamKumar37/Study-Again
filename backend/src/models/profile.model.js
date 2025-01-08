@@ -6,7 +6,7 @@ const profileSchema = new mongoose.Schema(
             type: String,
         },
         dob: {
-            type: String,
+            type: Date,
         },
         about: {
             type: String,
@@ -16,7 +16,7 @@ const profileSchema = new mongoose.Schema(
             type: Number,
             trim: true,
         }
-    }
+    }, { timestamps: true }
 );
 
-module.exports = mongoose.models.Profile || mongoose.model("Profile", profileSchema);
+export const Profile = mongoose.models.Profile || mongoose.model("Profile", profileSchema);

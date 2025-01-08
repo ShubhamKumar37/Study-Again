@@ -14,7 +14,7 @@ const categorySchema = new mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: "Course"
         }],
-    }
+    }, { timestamps: true }
 );
 
-module.exports = mongoose.models.Category || mongoose.model("Category", categorySchema);
+export const Category = mongoose.models.Category || mongoose.model("Category", categorySchema);

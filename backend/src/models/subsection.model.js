@@ -6,7 +6,7 @@ const subSectionSchema = new mongoose.Schema(
         description: { type: String, required: true },
         videoUrl: { type: String, required: true },
         timeDuration: { type: String },
-    }
+    }, { timestamps: true }
 );
 
-module.exports = moongoose.models.SubSection || mongoose.model("SubSection", subSectionSchema);
+export const SubSection = moongoose.models.SubSection || mongoose.model("SubSection", subSectionSchema);

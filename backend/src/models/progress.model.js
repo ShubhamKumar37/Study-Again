@@ -12,7 +12,7 @@ const progressSchema = new mongoose.Schema(
                 ref: "SubSection"
             }
         ],
-    }
+    }, { timestamps: true }
 );
 
-module.exports = mongoose.models.Progress || mongoose.model("Progress", progressSchema);
+export const Progress = mongoose.models.Progress || mongoose.model("Progress", progressSchema);

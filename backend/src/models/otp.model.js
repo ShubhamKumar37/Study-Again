@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
-// const mailSender = require('../utils/mailSender');
-// const { otpTemplate } = require("../mail/templates/emailVerificationTemplate");
+import mailSender from "../utils/mailSender.util";
 
 const OTPSchema = new mongoose.Schema(
     {
@@ -20,23 +19,19 @@ const OTPSchema = new mongoose.Schema(
     }
 );
 
-// async function sendVerficationEmail(email, otp) {
-//     try {
-//         const mailResponse = await mailSender(otpTemplate(otp), email, otp);
-//         console.log(`Email sended to ${email}`);
-//         console.log(mailResponse);
+async function sendVerficationEmail(email, otp) {
+    try {
+        return await mailSender(email, "OTP for account verification", otp);
+    }
+    catch (error) {
+        console.log("This error occur in OTP Model ", Error);
+        return null;
+    }
+}
 
-//     }
-//     catch (Error) {
-//         console.log("This error occur in OTP Model ", Error);
-//     }
-// }
+OTPSchema.pre("save", async (next) => {
+    await sendVerficationEmail(this.email, this.otp);
+    next();
+})
 
-// OTPSchema.pre("save", async (next) => {
-//     if (this.isNew) {
-//         await sendVerficationEmail(this.email, this.otp);
-//     }
-//     next();
-// })
-
-module.exports = mongoose.models.OTP || mongoose.model("OTP", OTPSchema);
+export const OTP = mongoose.models.OTP || mongoose.model("OTP", OTPSchema);

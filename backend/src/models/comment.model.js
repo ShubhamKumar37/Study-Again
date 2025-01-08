@@ -19,7 +19,7 @@ const commentSchema = new mongoose.Schema(
             ref: "Course",
             required: true,
         }
-    }
+    }, { timestamps: true }
 );
 
-module.exports = mongoose.models.Comment || mongoose.model("Comment", commentSchema);
+export const Comment = mongoose.models.Comment || mongoose.model("Comment", commentSchema);

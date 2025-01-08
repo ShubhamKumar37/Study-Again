@@ -64,7 +64,7 @@ const courseSchema = new mongoose.Schema(
         publicId: {
             type: String
         }
-    }
+    }, { timestamps: true }
 );
 
-module.exports = mongoose.models.Course || mongoose.model("Course", courseSchema);
+export const Course = mongoose.models.Course || mongoose.model("Course", courseSchema);
