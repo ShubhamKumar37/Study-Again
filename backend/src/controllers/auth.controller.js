@@ -6,7 +6,6 @@ import otpGenerator from "otp-generator"
 import { ApiResponse } from "../utils/ApiResponse.util.js";
 import { Profile } from "../models/profile.model.js";
 import jwt from "jsonwebtoken";
-import mailSender from "../utils/mailSender.util.js";
 
 const cookieOptions = {
     httpOnly: true,
