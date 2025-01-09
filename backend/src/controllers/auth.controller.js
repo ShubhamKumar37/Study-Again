@@ -1,11 +1,7 @@
-import { ApiError } from "../utils/ApiError.util.js";
-import { asyncHandler } from "../utils/asyncHandler.util.js";
-import { User } from "../models/user.model.js"
-import { OTP } from "../models/otp.model.js"
-import otpGenerator from "otp-generator"
-import { ApiResponse } from "../utils/ApiResponse.util.js";
-import { Profile } from "../models/profile.model.js";
 import jwt from "jsonwebtoken";
+import otpGenerator from "otp-generator"
+import { User, OTP, Profile } from "../models/index.js";
+import { ApiError, ApiResponse, asyncHandler } from "../utils/index.js";
 
 const cookieOptions = {
     httpOnly: true,
