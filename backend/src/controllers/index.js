@@ -1,5 +1,5 @@
 import { sendOtp, signupUser, loginUser, changePassword } from './auth.controller.js';
-import { createCourse } from './course.controller.js';
+import { createCourse, getAllCourses, getCourseDetail, updateCourse } from './course.controller.js';
 import { resetPasswordToken, resetPassword } from './password.controller.js';
 
 // auth.controller.js
@@ -9,7 +9,7 @@ export { sendOtp, signupUser, loginUser, changePassword };
 export { };
 
 // course.controller.js
-export { createCourse };
+export { createCourse, getAllCourses, getCourseDetail, updateCourse };
 
 // password.controller.js
 export { resetPasswordToken, resetPassword };

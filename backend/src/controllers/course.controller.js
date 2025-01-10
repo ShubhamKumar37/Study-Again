@@ -1,6 +1,5 @@
-import { Category, Course, User } from "../models";
-import { ApiError, ApiResponse, asyncHandler, cloudinaryUpload } from "../utils";
-
+import { Category, Course, User } from "../models/index.js";
+import { ApiError, ApiResponse, asyncHandler, cloudinaryDelete, cloudinaryUpload, getFilePublicId } from "../utils/index.js";
 
 const createCourse = asyncHandler(async (req, res) => {
     const { courseName, courseDescription, whatYouWillLearn, price, categoryId, status = "Draft", instructions, tag } = req.body;
@@ -52,4 +51,82 @@ const createCourse = asyncHandler(async (req, res) => {
     );
 });
 
-export { createCourse };
+const updateCourse = asyncHandler(async (req, res) => {
+    const { courseName, courseDescription, whatYouWillLearn, price, categoryId, status = "Draft", instructions, courseId, tag } = req.body;
+    const thumbnail = req.file.path;
+
+    const updateCourseOptions = {};
+    if (courseName) updateCourseOptions.courseName = courseName;
+    if (courseDescription) updateCourseOptions.courseDescription = courseDescription;
+    if (whatYouWillLearn) updateCourseOptions.whatYouWillLearn = whatYouWillLearn
+    if (price) updateCourseOptions.price = price;
+    if (status) updateCourseOptions.status = status;
+    if (instructions) updateCourseOptions.instructions = instructions;
+    if (tag) updateCourseOptions.tag = tag;
+    if (categoryId) updateCourseOptions = categoryId;
+
+    const courseExist = await Course.findById(courseId);
+    if (!courseExist) throw new ApiError(404, "Course does not exist");
+
+    const categoryExist = await Category.findByIdAndUpdate(categoryId, {
+        $pull: {
+            course: courseId
+        },
+        $push: {
+            course: courseExist._id
+        }
+    }, { new: true });
+    if (!categoryExist) throw new ApiError(404, "Category doesnot exist");
+
+    if (thumbnail) {
+        await cloudinaryDelete(getFilePublicId(courseExist.thumbnail), "image");
+        const uploadResponse = await cloudinaryUpload(thumbnail);
+        updateCourseOptions.thumbnail = uploadResponse.secure_url;
+    }
+
+    const updatedCourse = await Course.findByIdAndUpdate(courseExist._id,
+        {
+            $set: updateCourseOptions
+        }
+    );
+
+    return res.status(200).json(
+        new ApiError(200, "Course is been updated", updatedCourse)
+    );
+});
+
+const getAllCourses = asyncHandler(async (_, res) => {
+    const allCourses = await Course.find({}, {
+        courseName: 1,
+        price: 1,
+        category: 1,
+        thumbnail: 1,
+        instructor: 1,
+        studentEnrolled: 1,
+        ratingAndReviews: 1,
+        studentCount: { $size: "$studentEnrolled" }
+    }).populate("instructor").sort({ studentEnrolled: -1 }).exec();
+
+    if (allCourses.length === 0) throw new ApiError(404, "No course exist in database");
+
+    return res.status(200).json(
+        new ApiResponse(200, "All courses are fetched", allCourses)
+    );
+});
+
+const getCourseDetail = asyncHandler(async (req, res) => {
+    const { courseId } = req.params;
+    if (!courseId) throw new ApiError(400, "Course id is not provided");
+
+    const courseDetails = await Course.findById(courseId).populate({
+        path: "courseContent",
+        populate: { path: "subSection" }
+    }).populate("instructor category comment").exec();
+    if (!courseDetails) throw new ApiError(404, "Course does not exist");
+
+    return res.status(200).json(
+        new ApiResponse(200, "Course detail fetched successfully", courseDetails)
+    );
+});
+
+export { createCourse, updateCourse, getAllCourses, getCourseDetail };

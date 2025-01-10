@@ -1,8 +1,6 @@
 import { Course, Category } from "../models/index.js";
 import { ApiError, ApiResponse, asyncHandler } from "../utils/index.js";
 
-
-
 const createCategory = asyncHandler(async (req, res) => {
     const { name, description } = req.body;
 
@@ -53,7 +51,6 @@ const updateCategory = asyncHandler(async (req, res) => {
     const { categoryId } = req.params;
 
     if (!categoryId) throw new ApiError(400, "Category id is not provided");
-
     if (!name && !description) throw new ApiError(403, "Proivde atleast one detail to be updated");
 
     const updateOptions = {};
