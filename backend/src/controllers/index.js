@@ -3,6 +3,8 @@ import { createComment, deleteComment, getAllComment, getAllCommentCourse, getAv
 import { createCourse, getAllCourses, getCourseDetail, updateCourse } from './course.controller.js';
 import { resetPasswordToken, resetPassword } from './password.controller.js';
 import { getStudentEnrolledCourse, getUserDetails, updateProfile, updateProfilePicture } from './profile.controller.js';
+import { createSection, deleteSection, getAllSection, updateSection } from './section.controller.js';
+import { createSubSection, deleteSubSection, updateSubSectionText, updateSubSectionVideo } from './subsection.controller.js';
 
 // auth.controller.js
 export { sendOtp, signupUser, loginUser, changePassword };
@@ -23,7 +25,7 @@ export { };
 export { updateProfile, getUserDetails, getStudentEnrolledCourse, updateProfilePicture };
 
 // section.controller.js
-export { };
+export { createSection, updateSection, getAllSection, deleteSection };
 
 // subsection.controller.js
-export { };
+export { createSubSection, deleteSubSection, updateSubSectionText, updateSubSectionVideo };
