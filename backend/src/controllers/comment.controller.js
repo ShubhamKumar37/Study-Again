@@ -1,5 +1,5 @@
-import { Comment, Course, User } from "../models";
-import { ApiError, ApiResponse, asyncHandler } from "../utils";
+import { Comment, Course, User } from "../models/index.js";
+import { ApiError, ApiResponse, asyncHandler } from "../utils/index.js";
 
 
 const createComment = asyncHandler(async (req, res) => {

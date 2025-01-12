@@ -9,4 +9,4 @@ const subSectionSchema = new mongoose.Schema(
     }, { timestamps: true }
 );
 
-export const SubSection = moongoose.models.SubSection || mongoose.model("SubSection", subSectionSchema);
+export const SubSection = mongoose.models.SubSection || mongoose.model("SubSection", subSectionSchema);

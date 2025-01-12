@@ -131,4 +131,8 @@ const changePassword = asyncHandler(async (req, res) => {
     );
 });
 
-export { sendOtp, signupUser, loginUser, changePassword };
+const logoutUser = asyncHandler(async (_, res) => {
+    return res.clearCookie("token", { httpOnly: true, secure: true }).status(200).json(new ApiResponse(200, "User loggedout successfully"));
+});
+
+export { sendOtp, signupUser, loginUser, changePassword, logoutUser };

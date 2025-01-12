@@ -1,5 +1,5 @@
-import { Profile, User } from "../models";
-import { ApiError, ApiResponse, asyncHandler, cloudinaryDelete, cloudinaryUpload, getFilePublicId } from "../utils";
+import { Profile, User } from "../models/index.js";
+import { ApiError, ApiResponse, asyncHandler, cloudinaryDelete, cloudinaryUpload, getFilePublicId } from "../utils/index.js";
 
 
 const updateProfile = asyncHandler(async (req, res) => {

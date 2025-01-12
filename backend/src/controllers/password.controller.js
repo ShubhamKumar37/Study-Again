@@ -1,8 +1,5 @@
-import { User } from "../models/user.model";
-import { ApiError } from "../utils/ApiError.util";
-import { ApiResponse } from "../utils/ApiResponse.util";
-import { asyncHandler } from "../utils/asyncHandler.util";
-import mailSender from "../utils/mailSender.util";
+import { User } from "../models/index.js";
+import { ApiError, ApiResponse, asyncHandler, mailSender } from "../utils/index.js";
 
 
 const resetPasswordToken = asyncHandler(async (req, res) => {

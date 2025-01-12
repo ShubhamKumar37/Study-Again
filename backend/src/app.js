@@ -11,9 +11,16 @@ app.use(express.json());
 app.use(cookieparser());
 app.use(express.static("public"));
 
-// app.get("/", (_, res) => {
-//     res.send("Welcome to home page");
-// });
+import { userRouter, profileRouter, paymentRouter, courseRouter } from "./routes/index.js";
+
+app.use("/api/v1/user", userRouter);
+app.use("/api/v1/profile", profileRouter);
+app.use("/api/v1/payment", paymentRouter);
+app.use("/api/v1/course", courseRouter);
+
+app.get("/", (_, res) => {
+    res.send("Welcome to home page");
+});
 
 
-export {app};
+export { app };

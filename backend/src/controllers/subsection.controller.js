@@ -1,5 +1,5 @@
 import { Section, SubSection } from "../models/index.js";
-import { ApiError, ApiResponse, asyncHandler, cloudinaryDelete, cloudinaryUpload, getFilePublicId } from "../utils";
+import { ApiError, ApiResponse, asyncHandler, cloudinaryDelete, cloudinaryUpload, getFilePublicId } from "../utils/index.js";
 
 
 const createSubSection = asyncHandler(async (req, res) => {

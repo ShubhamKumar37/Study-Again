@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import mailSender from "../utils/mailSender.util";
+import { mailSender } from "../utils/index.js";
 
 const OTPSchema = new mongoose.Schema(
     {
