@@ -1,4 +1,4 @@
-import { Category, Course, User } from "../models/index.js";
+import { Category, Course, Section, SubSection, User } from "../models/index.js";
 import { ApiError, ApiResponse, asyncHandler, cloudinaryDelete, cloudinaryUpload, getFilePublicId } from "../utils/index.js";
 
 const createCourse = asyncHandler(async (req, res) => {
@@ -129,4 +129,38 @@ const getCourseDetail = asyncHandler(async (req, res) => {
     );
 });
 
-export { createCourse, updateCourse, getAllCourses, getCourseDetail };
+const deleteCourse = asyncHandler(async (req, res) => {
+    const { courseId } = req.body;
+
+    if (!courseId) throw new ApiError(400, "Course id is not provided");
+
+    const course = await Course.findById(courseId)
+        .populate({
+            path: "courseContent",
+            populate: {
+                path: "subSection"
+            }
+        });
+
+    if (!course) throw new ApiError(404, "Course not found");
+
+    for (let section of course.courseContent) {
+        for (let subSection of section.subSection) {
+            if (subSection.videoUrl) {
+                const publicId = getFilePublicId(subSection.videoUrl);
+                if (publicId) {
+                    await cloudinaryDelete(publicId, 'video');
+                }
+            }
+            await SubSection.findByIdAndDelete(subSection._id);
+        }
+        await Section.findByIdAndDelete(section._id);
+    }
+
+    await course.remove();
+
+    res.status(200).json(new ApiResponse(200, "Course deleted successfully with there related content"));
+});
+
+
+export { createCourse, updateCourse, getAllCourses, getCourseDetail, deleteCourse };

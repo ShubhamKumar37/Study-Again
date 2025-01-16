@@ -1,6 +1,6 @@
 import { sendOtp, signupUser, loginUser, changePassword, logoutUser } from './auth.controller.js';
 import { createComment, deleteComment, getAllComment, getAllCommentCourse, getAverageRating, updateComment } from './comment.controller.js';
-import { createCourse, getAllCourses, getCourseDetail, updateCourse } from './course.controller.js';
+import { createCourse, deleteCourse, getAllCourses, getCourseDetail, updateCourse } from './course.controller.js';
 import { resetPasswordToken, resetPassword } from './password.controller.js';
 import { createPayment, verifySignature } from './payment.controller.js';
 import { getStudentEnrolledCourse, getUserDetails, updateProfile, updateProfilePicture } from './profile.controller.js';
@@ -14,7 +14,7 @@ export { sendOtp, signupUser, loginUser, changePassword, logoutUser };
 export { createComment, getAverageRating, getAllComment, getAllCommentCourse, updateComment, deleteComment };
 
 // course.controller.js
-export { createCourse, getAllCourses, getCourseDetail, updateCourse };
+export { createCourse, getAllCourses, getCourseDetail, updateCourse, deleteCourse };
 
 // password.controller.js
 export { resetPasswordToken, resetPassword };
