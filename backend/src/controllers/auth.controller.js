@@ -11,10 +11,11 @@ const cookieOptions = {
 
 const sendOtp = asyncHandler(async (req, res) => {
     const { email } = req.body;
+    console.log("This is email = ", email);
 
-    if (!email) throw new ApiError(400, "Please provide a otp");
+    if (!email) throw new ApiError(400, "Please provide a email");
 
-    const userExist = await User.findOne({ email: email });
+    const userExist = await User.findOne({ email });
 
     if (userExist) throw new ApiError(404, "User already exist");
 
@@ -42,6 +43,7 @@ const signupUser = asyncHandler(async (req, res) => {
         password, confirmPassword,
         accountType, otp, contactNumber
     } = req.body;
+
 
     if (!firstName) throw new ApiError(400, "Please provide first name");
     if (!lastName) throw new ApiError(400, "Please provide last name");
@@ -87,7 +89,7 @@ const loginUser = asyncHandler(async (req, res) => {
     if (!email) throw new ApiError(400, "Please provide email");
     if (!password) throw new ApiError(400, "Please provide password");
 
-    const userExist = await User.findOne({ email: email }).select("-password");
+    const userExist = await User.findOne({ email })
     if (!userExist) throw new ApiError(404, "User does not exist");
 
     if (!(await userExist.isPasswordCorrect(password))) throw new ApiError(403, "Incorrect password");

@@ -8,11 +8,10 @@ import { auth } from "../middlewares/auth.middleware.js";
 
 const userRouter = Router();
 
-
-userRouter.put("/login", loginUser);
-userRouter.post("/signup", signupUser);
-userRouter.put("/logout", auth, logoutUser);
-userRouter.post("/sendotp", sendOtp);
+userRouter.put("/", loginUser); // Working
+userRouter.post("/", signupUser); // Working
+userRouter.put("/logout", auth, logoutUser); // Working
+userRouter.post("/sendotp", sendOtp); // Working
 
 
 userRouter.put("/password-change", auth, changePassword);
