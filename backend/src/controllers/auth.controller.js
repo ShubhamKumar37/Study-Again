@@ -114,7 +114,7 @@ const changePassword = asyncHandler(async (req, res) => {
     if (!newPassword || newPassword.trim().length === 0) throw new ApiError(400, "New password is not provided properly");
     if (!confirmPassword || confirmPassword.trim().length === 0)
         throw new ApiError(400, "Confirm password is not provided properly");
-    if (!oldPassword || oldPassword.trim().length === 0) throw new ApiError(400, "Confirm password is not provided properly");
+    if (!oldPassword || oldPassword.trim().length === 0) throw new ApiError(400, "Old password is not provided properly");
     if (newPassword !== confirmPassword) throw new ApiError(400, "New password and confirm password do not match");
 
     const userExist = await User.findById(userId);

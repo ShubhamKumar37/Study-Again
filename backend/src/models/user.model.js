@@ -59,10 +59,6 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: true,
     },
-    publicId: {
-        type: String,
-        default: null
-    }
 }, { timestamps: true });
 
 userSchema.pre("save", async function (next) {

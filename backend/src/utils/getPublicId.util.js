@@ -5,5 +5,5 @@ export const getFilePublicId = (url) => {
 
     const parts = url.split("/").at(-1).split(".")[0];
 
-    return process.env.CLOUDINARY_FOLDER + parts;
+    return process.env.CLOUDINARY_FOLDER + "/" + parts;
 };

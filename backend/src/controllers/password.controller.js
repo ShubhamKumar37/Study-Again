@@ -8,7 +8,7 @@ const resetPasswordToken = asyncHandler(async (req, res) => {
     if (!email) throw new ApiError(400, "Email is not provided");
 
     const userExist = await User.findOne({ email });
-    if (!userExist) throw new ApiError(404, "User does no exist");
+    if (!userExist) throw new ApiError(404, "User does not exist");
 
     const token = crypto.randomUUID();
 
@@ -40,6 +40,9 @@ const resetPassword = asyncHandler(async (req, res) => {
     const userExist = await User.findOne({ token: token }).select("-password");
     if (!userExist) throw new ApiError(404, "User does not exist for this token");
     if (userExist.resetPasswordExpires < Date.now()) throw new ApiError(400, "Reset password link and token expiered");
+
+    userExist.password = password;
+    await userExist.save();
 
     userExist.token = null;
     userExist.resetPasswordExpires = null;

@@ -5,10 +5,10 @@ import { upload } from "../middlewares/multer.middleware.js";
 
 const profileRouter = Router();
 
-profileRouter.get("/details", auth, getUserDetails);
-profileRouter.put("/update", auth, updateProfile);
-profileRouter.get("/course-enrolled", auth, getStudentEnrolledCourse);
-profileRouter.put("/update-pp", auth, upload.single("userImage"), updateProfilePicture);
+profileRouter.get("/", auth, getUserDetails); // Working
+profileRouter.put("/", auth, updateProfile); // Working
+profileRouter.get("/course-enrolled", auth, getStudentEnrolledCourse); // Working
+profileRouter.put("/pp", auth, upload.single("userImage"), updateProfilePicture); // Working
 
 
 export { profileRouter };
