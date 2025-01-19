@@ -24,4 +24,5 @@ courseRouter.delete("/subsection/:sectionId", auth, isInstructor, deleteSubSecti
 courseRouter.post("/subsection/:sectionId", auth, isInstructor, upload.single("videoFile"), createSubSection);
 courseRouter.put("/subsection/:subSectionId", auth, isInstructor, upload.single("videoFile"), updateSubSectionVideo);
 
+
 export { courseRouter };

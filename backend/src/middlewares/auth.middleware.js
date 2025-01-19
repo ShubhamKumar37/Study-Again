@@ -24,10 +24,15 @@ const isAdmin = asyncHandler(async (req, _, next) => {
     next();
 });
 
+const isAdminOrInstructor = asyncHandler(async (req, _, next) => {
+    if (req.user.accountType !== "Admin" && req.user.accountType !== "Instructor") throw new ApiError(402, "You are not Admin");
+    next();
+});
+
 const isInstructor = asyncHandler(async (req, _, next) => {
     if (req.user.accountType !== "Instructor") throw new ApiError(402, "You are not Instructor");
     next();
 });
 
 
-export { auth, isStudent, isAdmin, isInstructor };
+export { auth, isStudent, isAdmin, isInstructor, isAdminOrInstructor };

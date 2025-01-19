@@ -1,5 +1,6 @@
 import { Course, Category } from "../models/index.js";
 import { ApiError, ApiResponse, asyncHandler } from "../utils/index.js";
+import mongoose from "mongoose";
 
 const createCategory = asyncHandler(async (req, res) => {
     const { name, description } = req.body;
@@ -34,7 +35,8 @@ const getCategoryDetails = asyncHandler(async (req, res) => {
     const categoryDetails = await Category.findById(categoryId).populate("course");
     if (!categoryDetails) throw new ApiError(404, "No data found for this category id");
 
-    const otherCategoryDetails = await Category.findById({ _id: { $ne: categoryId } }).populate("course").exec();
+    const otherCategoryDetails = await Category.find({ _id: { $ne: categoryId } }).populate("course").exec();
+
     const topSellingCourse = await Course.find({}).sort({ studentEnrolled: -1 }).limit(10).exec();
 
     const allInfo = {
