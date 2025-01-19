@@ -28,7 +28,7 @@ const createCourse = asyncHandler(async (req, res) => {
         instructor: req.user._id,
         status,
         instructions,
-        tag: [tag],
+        tag: tag,
     });
 
     const updateUserCourse = await User.findByIdAndUpdate(req.user._id, {
@@ -130,11 +130,11 @@ const getCourseDetail = asyncHandler(async (req, res) => {
 });
 
 const deleteCourse = asyncHandler(async (req, res) => {
-    const { courseId } = req.body;
+    const { courseId } = req.params;
 
     if (!courseId) throw new ApiError(400, "Course id is not provided");
 
-    const course = await Course.findById(courseId)
+    const course = await Course.findByIdAndDelete(courseId)
         .populate({
             path: "courseContent",
             populate: {
@@ -144,6 +144,14 @@ const deleteCourse = asyncHandler(async (req, res) => {
 
     if (!course) throw new ApiError(404, "Course not found");
 
+    await User.findByIdAndUpdate(course.instructor, {
+        $pull: { courses: course._id }
+    });
+    await Category.findByIdAndUpdate(course.category, {
+        $pull: { course: course._id }
+    });
+
+    await cloudinaryDelete(getFilePublicId(course.thumbnail), "image");
     for (let section of course.courseContent) {
         for (let subSection of section.subSection) {
             if (subSection.videoUrl) {
@@ -156,8 +164,6 @@ const deleteCourse = asyncHandler(async (req, res) => {
         }
         await Section.findByIdAndDelete(section._id);
     }
-
-    await course.remove();
 
     res.status(200).json(new ApiResponse(200, "Course deleted successfully with there related content"));
 });

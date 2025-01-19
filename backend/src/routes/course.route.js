@@ -6,11 +6,11 @@ import { createCourse, createSection, createSubSection, deleteCourse, deleteSect
 const courseRouter = Router();
 
 // Course routes
-courseRouter.get("/", getAllCourses);
-courseRouter.get("/:courseId", getCourseDetail);
-courseRouter.delete("/", auth, isInstructor, deleteCourse);
+courseRouter.get("/", getAllCourses); // Working
+courseRouter.get("/:courseId", getCourseDetail); // Working
+courseRouter.delete("/:courseId", auth, isInstructor, deleteCourse);
 courseRouter.put("/", auth, isInstructor, upload.single("thumbnail"), updateCourse);
-courseRouter.post("/", auth, isInstructor, upload.single("thumbnail"), createCourse);
+courseRouter.post("/", auth, isInstructor, upload.single("thumbnail"), createCourse); // Working
 
 // Section routes
 courseRouter.get("/section/:courseId", getAllSection);
