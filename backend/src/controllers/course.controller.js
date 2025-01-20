@@ -68,14 +68,11 @@ const updateCourse = asyncHandler(async (req, res) => {
     const courseExist = await Course.findById(courseId);
     if (!courseExist) throw new ApiError(404, "Course does not exist");
 
-    // Check if category is changing and ensure it only gets updated if necessary
     if (categoryId && courseExist.category.toString() !== categoryId) {
-        // First, remove the course from the old category
         await Category.findByIdAndUpdate(courseExist.category, {
             $pull: { course: courseExist._id }
         });
 
-        // Only add the course to the new category if it's not already there
         const categoryExist = await Category.findById(categoryId);
         if (!categoryExist) throw new ApiError(404, "Category does not exist");
 
@@ -86,9 +83,7 @@ const updateCourse = asyncHandler(async (req, res) => {
         }
     }
 
-    // Handle thumbnail upload if provided
     if (thumbnail) {
-        // Delete the old thumbnail from Cloudinary if necessary
         if (courseExist.thumbnail) {
             await cloudinaryDelete(getFilePublicId(courseExist.thumbnail), "image");
         }
@@ -98,7 +93,6 @@ const updateCourse = asyncHandler(async (req, res) => {
         updateCourseOptions.thumbnail = uploadResponse.secure_url;
     }
 
-    // Update the course with the new options
     const updatedCourse = await Course.findByIdAndUpdate(courseExist._id, {
         $set: updateCourseOptions
     }, { new: true });

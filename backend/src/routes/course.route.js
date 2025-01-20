@@ -9,14 +9,14 @@ const courseRouter = Router();
 courseRouter.get("/", getAllCourses); // Working
 courseRouter.get("/:courseId", getCourseDetail); // Working
 courseRouter.delete("/:courseId", auth, isInstructor, deleteCourse); // Working
-courseRouter.put("/", auth, isInstructor, upload.single("thumbnail"), updateCourse);
+courseRouter.put("/", auth, isInstructor, upload.single("thumbnail"), updateCourse); // Working
 courseRouter.post("/", auth, isInstructor, upload.single("thumbnail"), createCourse); // Working
 
 // Section routes
-courseRouter.get("/section/:courseId", getAllSection);
-courseRouter.post("/section/:courseId", auth, isInstructor, createSection);
+courseRouter.get("/section/:courseId", getAllSection); // Working
+courseRouter.post("/section/:courseId", auth, isInstructor, createSection); // Working
 courseRouter.put("/section/:sectionId", auth, isInstructor, updateSection);
-courseRouter.delete("/section/:courseId", auth, isInstructor, deleteSection);
+courseRouter.delete("/section/:courseId", auth, isInstructor, deleteSection); // Working
 
 // SubSection routes
 courseRouter.put("/subsection", auth, isInstructor, updateSubSectionText);
