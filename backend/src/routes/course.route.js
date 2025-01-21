@@ -15,13 +15,13 @@ courseRouter.post("/", auth, isInstructor, upload.single("thumbnail"), createCou
 // Section routes
 courseRouter.get("/section/:courseId", getAllSection); // Working
 courseRouter.post("/section/:courseId", auth, isInstructor, createSection); // Working
-courseRouter.put("/section/:sectionId", auth, isInstructor, updateSection);
-courseRouter.delete("/section/:courseId", auth, isInstructor, deleteSection); // Working
+courseRouter.put("/section/:sectionId", auth, isInstructor, updateSection); // Working
+courseRouter.delete("/section/:courseId", auth, isInstructor, deleteSection); // Working - more Work of delete the media
 
 // SubSection routes
-courseRouter.put("/subsection", auth, isInstructor, updateSubSectionText);
-courseRouter.delete("/subsection/:sectionId", auth, isInstructor, deleteSubSection);
-courseRouter.post("/subsection/:sectionId", auth, isInstructor, upload.single("videoFile"), createSubSection);
+courseRouter.put("/subsection", auth, isInstructor, updateSubSectionText); // Woeking
+courseRouter.delete("/subsection/:sectionId", auth, isInstructor, deleteSubSection); // Working
+courseRouter.post("/subsection/:sectionId", auth, isInstructor, upload.single("videoFile"), createSubSection); // Working
 courseRouter.put("/subsection/:subSectionId", auth, isInstructor, upload.single("videoFile"), updateSubSectionVideo);
 
 

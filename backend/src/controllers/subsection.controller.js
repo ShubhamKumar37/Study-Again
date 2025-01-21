@@ -37,7 +37,7 @@ const deleteSubSection = asyncHandler(async (req, res) => {
     if (!sectionId) throw new ApiError(400, "Section id is not provided");
     if (!subSectionId) throw new ApiError(400, "SubSection id is not provided");
 
-    const updatedSection = await Section.findByidAndUpdate(sectionId, {
+    const updatedSection = await Section.findByIdAndUpdate(sectionId, {
         $pull: {
             subSection: subSectionId
         }
@@ -58,8 +58,7 @@ const deleteSubSection = asyncHandler(async (req, res) => {
 const updateSubSectionText = asyncHandler(async (req, res) => {
     const { subSectionId, title, description } = req.body;
     if (!subSectionId) throw new ApiError(400, "Subsection id is not provided");
-    if (!title || title.trim().length === 0) throw new ApiError(400, "title id is not provided");
-    if (!description || description.trim().length === 0) throw new ApiError(400, "description id is not provided");
+    if (!title && !description) throw new ApiError(400, "Either title or description must be provided");
 
     const updateValues = {};
     if (title) updateValues.title = title;
