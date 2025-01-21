@@ -1,6 +1,7 @@
 import { Category, Course, Section, SubSection, User } from "../models/index.js";
 import { ApiError, ApiResponse, asyncHandler, cloudinaryDelete, cloudinaryUpload, getFilePublicId } from "../utils/index.js";
 
+
 const createCourse = asyncHandler(async (req, res) => {
     const { courseName, courseDescription, whatYouWillLearn, price, categoryId, status = "Draft", instructions, tag } = req.body;
     const thumbnail = req.file.path;
@@ -101,7 +102,6 @@ const updateCourse = asyncHandler(async (req, res) => {
         new ApiResponse(200, "Course has been updated successfully", updatedCourse)
     );
 });
-
 
 const getAllCourses = asyncHandler(async (_, res) => {
     const allCourses = await Course.find({}, {

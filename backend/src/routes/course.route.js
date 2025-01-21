@@ -22,7 +22,7 @@ courseRouter.delete("/section/:courseId", auth, isInstructor, deleteSection); //
 courseRouter.put("/subsection", auth, isInstructor, updateSubSectionText); // Woeking
 courseRouter.delete("/subsection/:sectionId", auth, isInstructor, deleteSubSection); // Working
 courseRouter.post("/subsection/:sectionId", auth, isInstructor, upload.single("videoFile"), createSubSection); // Working
-courseRouter.put("/subsection/:subSectionId", auth, isInstructor, upload.single("videoFile"), updateSubSectionVideo);
+courseRouter.put("/subsection/:subSectionId", auth, isInstructor, upload.single("videoFile"), updateSubSectionVideo); // Working
 
 
 export { courseRouter };

@@ -1,5 +1,6 @@
-import { Comment, Course, User } from "../models/index.js";
+import { Comment, Course } from "../models/index.js";
 import { ApiError, ApiResponse, asyncHandler } from "../utils/index.js";
+import mongoose from "mongoose";
 
 
 const createComment = asyncHandler(async (req, res) => {
@@ -8,16 +9,17 @@ const createComment = asyncHandler(async (req, res) => {
     const { courseId } = req.params;
 
     if (!rating) throw new ApiError(400, "Rating is not provided");
-    if (rating < 1 && rating > 5) throw new ApiError(400, "Rating must be between 1 to 5");
+    if (rating < 1 || rating > 5) throw new ApiError(400, "Rating must be between 1 to 5");
     if (!courseId) throw new ApiError(400, "Course id is not provided");
 
-    const enrolledStudentCheck = await User.findOne({ _id: userId }, {
+    const enrolledStudentCheck = await Course.findOne({
+        _id: courseId,
         studentEnrolled: {
             $elemMatch: { $eq: userId }
         }
     }).select("image firstName lastName");
 
-    if (!enrolledStudentCheck) throw new ApiError(404, "User is not enrolled in this course");
+    if (!enrolledStudentCheck) throw new ApiError(404, "User is not enrolled in this course or the course does not exist");
 
     const commentExist = await Comment.findOne({ user: userId, course: courseId });
     if (commentExist) throw new ApiError(403, "Comment already exist try to upadate it");
@@ -65,7 +67,7 @@ const getAverageRating = asyncHandler(async (req, res) => {
     ]);
 
     return res.status(200).json(
-        new ApiResponse(200, "Average rating fetched successfully", averageRating)
+        new ApiResponse(200, "Average rating fetched successfully", { "averageRating": averageRating[0].averageRating })
     );
 });
 
@@ -81,7 +83,7 @@ const getAllCommentCourse = asyncHandler(async (req, res) => {
         path: "course",
         select: "courseName"
     }).sort({ rating: -1 }).skip((page - 1) * limit).limit(limit);
-    if (allComment.length === 0) throw new ApiError(400, "No comment exist for this course");
+    if (allComment.length === 0) throw new ApiError(400, "No comment exist for this course or may be the course does not exist");
 
     return res.status(200).json(
         new ApiResponse(200, "All comment are fetched for course successfully", allComment)
@@ -115,7 +117,10 @@ const updateComment = asyncHandler(async (req, res) => {
     if (!commentId) throw new ApiError(400, "Comment id is not provided;")
 
     const updateValues = {};
-    if (rating) updateValues.rating = rating;
+    if (rating) {
+        if (rating < 1 || rating > 5) throw new ApiError(402, "Please provide a valid rating (1 to 5)");
+        updateValues.rating = rating;
+    }
     if (review) updateValues.review = review;
 
     const updatedComment = await Comment.findByIdAndUpdate(commentId, {
@@ -130,7 +135,7 @@ const updateComment = asyncHandler(async (req, res) => {
 });
 
 const deleteComment = asyncHandler(async (req, res) => {
-    const { commentId } = req.body;
+    const { commentId } = req.params;
     if (!commentId) throw new ApiError(400, "Comment id is not provided");
 
     const commentExist = await Comment.findByIdAndDelete(commentId);
@@ -146,5 +151,6 @@ const deleteComment = asyncHandler(async (req, res) => {
         new ApiResponse(200, "Comment deleted successfully")
     );
 });
+
 
 export { createComment, getAverageRating, getAllComment, getAllCommentCourse, updateComment, deleteComment };

@@ -1,7 +1,8 @@
 import jwt from "jsonwebtoken";
-import otpGenerator from "otp-generator"
+import otpGenerator from "otp-generator";
 import { User, OTP, Profile } from "../models/index.js";
 import { ApiError, ApiResponse, asyncHandler } from "../utils/index.js";
+
 
 const cookieOptions = {
     httpOnly: true,

@@ -96,4 +96,5 @@ const updateSubSectionVideo = asyncHandler(async (req, res) => {
     );
 });
 
+
 export { createSubSection, deleteSubSection, updateSubSectionText, updateSubSectionVideo };

@@ -1,6 +1,6 @@
 import { Course, Category } from "../models/index.js";
 import { ApiError, ApiResponse, asyncHandler } from "../utils/index.js";
-import mongoose from "mongoose";
+
 
 const createCategory = asyncHandler(async (req, res) => {
     const { name, description } = req.body;
@@ -69,5 +69,6 @@ const updateCategory = asyncHandler(async (req, res) => {
         new ApiResponse(200, "Category updated successfully", updateCategory)
     );
 });
+
 
 export { createCategory, getAllCategory, getCategoryDetails, updateCategory };

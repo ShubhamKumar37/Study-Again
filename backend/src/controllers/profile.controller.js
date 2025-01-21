@@ -26,7 +26,7 @@ const updateProfile = asyncHandler(async (req, res) => {
     }, { new: true });
 
     return res.status(200).json(
-        new ApiResponse(200, "Profile updated successfully", {updateduser, updatedProfile})
+        new ApiResponse(200, "Profile updated successfully", { updateduser, updatedProfile })
     );
 });
 
@@ -72,5 +72,6 @@ const updateProfilePicture = asyncHandler(async (req, res) => {
         new ApiResponse(200, "User image updated successfully", userExist)
     );
 });
+
 
 export { updateProfile, getUserDetails, getStudentEnrolledCourse, updateProfilePicture };
