@@ -3,7 +3,7 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="w-screen h-screen bg-richblack-900 text-white font-inter">
+    <div className="w-full bg-richblack-900 text-white font-inter">
       <Outlet />
     </div>
   );
