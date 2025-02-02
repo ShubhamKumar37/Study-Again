@@ -1,5 +1,5 @@
 import React from 'react'
-import { Section1 } from '../components';
+import { Section1, Section2 } from '../components';
 
 const HomePage = () => {
     return (
@@ -8,6 +8,7 @@ const HomePage = () => {
             <Section1 />
 
             {/* Section 2 */}
+            <Section2 />
 
 
             {/* Section 3 */}
