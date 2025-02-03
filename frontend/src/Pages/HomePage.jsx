@@ -1,20 +1,26 @@
 import React from 'react'
-import { Section1, Section2 } from '../components';
+import { Section1, Section2, Section3, Section4 } from '../components';
 
 const HomePage = () => {
     return (
-        <div className='w-11/12 mx-auto flex flex-col '>
+        <div className='flex flex-col '>
             {/* Section 1 */}
-            <Section1 />
+            <div className='bg-richblack-900'>
+                <Section1 />
+            </div>
 
             {/* Section 2 */}
-            <Section2 />
-
+            <div className='bg-richblack-900'>
+                <Section2 />
+            </div>
 
             {/* Section 3 */}
+            <Section3 />
 
-
-            {/* Footer */}
+            {/* Section 4 */}
+            <div className='bg-richblack-900'>
+                <Section4 />
+            </div>
         </div >
     )
 }

@@ -7,7 +7,7 @@ import Banner from '../../assets/Images/banner.mp4'
 
 const Section1 = () => {
     return (
-        <div className='w-full flex flex-col items-center gap-[3rem] p-8'>
+        <div className='w-11/12 mx-auto flex flex-col items-center gap-[3rem] bg-richblack-900 p-8'>
             <div className='flex flex-col items-center gap-[36px]'>
                 <div className="group p-[4px] rounded-full bg-richblack-800 font-bold text-richblack-300 w-fit button-shadow-instructor">
                     <Link

@@ -1,3 +1,51 @@
+import { FaFacebook, FaYoutube, FaGoogle, FaTwitter } from "react-icons/fa";
+
+export const FooterLink1 = [
+  {
+    title: "Company",
+    links: [
+      { title: "About", link: "/about" },
+      { title: "Careers", link: "/career" },
+      { title: "Affiliates", link: "/affiliates" },
+    ]
+  },
+  {
+    title: "Resources",
+    links: [
+      { title: "Articles", link: "/article" },
+      { title: "Blog", link: "/blog" },
+      { title: "Chart Sheet", link: "/chart-sheet" },
+      { title: "Code Challenges", link: "/code-challenges" },
+      { title: "Docs", link: "/docs" },
+      { title: "Projects", link: "/project" },
+      { title: "Videos", link: "/videos" },
+      { title: "Workspaces", link: "/workspace" },
+    ],
+  },
+  {
+    title: "Support",
+    links: [
+      { title: "Help Center", link: "/help" }
+    ],
+  },
+  {
+    title: "Plans",
+    links: [
+      { title: "Paid Membership", link: "/paid-membership" },
+      { title: "For Students", link: "/student-plan" },
+      { title: "Business Solutions", link: "/business-solution" },
+    ],
+  },
+  {
+    title: "Community",
+    links: [
+      { title: "Forums", link: "/forum" },
+      { title: "Chapters", link: "/chapter" },
+      { title: "Events", link: "/event" },
+    ],
+  },
+]
+
 export const FooterLink2 = [
   {
     title: "Subjects",
@@ -43,13 +91,48 @@ export const FooterLink2 = [
   {
     title: "Career building",
     links: [
-        {title: "Career paths", link: "/career-paths"},
-        {title: "Career services", link: "/career-services"},
-        {title: "Interview prep", link: "/interview-prep"},
-        {title: "Professional certification", link: "/professional-certification"},
-        {title: "-", link: "/hi"},
-        {title: "Full Catalog", link: "/full-catalog"},
-        {title: "Beta Content", link: "/beta-content"}
+      { title: "Career paths", link: "/career-paths" },
+      { title: "Career services", link: "/career-services" },
+      { title: "Interview prep", link: "/interview-prep" },
+      { title: "Professional certification", link: "/professional-certification" },
+      { title: "Full Catalog", link: "/full-catalog" },
+      { title: "Beta Content", link: "/beta-content" }
     ]
   }
+];
+
+export const FooterBottomText = [
+  {
+    title: "Privacy and Policy",
+    link: "/privacy"
+  },
+  {
+    title: "Cookie Policy",
+    link: "/cookie-policy"
+  },
+  {
+    title: "Terms",
+    link: "/terms-and-condition"
+  },
+
+];
+
+export const FooterLogoArray = [
+  {
+    icon: FaFacebook,
+    link: "https://www.facebook.com/"
+  },
+  {
+    icon: FaGoogle,
+    link: "https://www.google.com/"
+  },
+  {
+    icon: FaTwitter,
+    link: "https://www.twitter.com/"
+  },
+  {
+    icon: FaYoutube,
+    link: "https://www.youtube.com/"
+  },
+
 ];

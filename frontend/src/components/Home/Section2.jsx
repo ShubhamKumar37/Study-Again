@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom'
 import { BlackBtn, YellowBtn } from '../index.js'
 import { FiArrowRight } from 'react-icons/fi'
 import CodeAnimation from './CodeAnimation.jsx'
+import ExploreSection from './ExploreSection.jsx'
 
 const Section2 = () => {
     return (
-        <div className="w-full flex flex-col p-[3rem] py-[5rem] gap-[4rem]">
+        <div className="w-11/12 mx-auto flex flex-col p-[3rem] py-[5rem] gap-[4rem]">
             <div className='flex flex-row justify-between'>
                 <div className='w-[45%] flex flex-col gap-[2rem]'>
                     <div className='flex flex-col gap-4'>
@@ -60,6 +61,21 @@ const Section2 = () => {
                     <CodeAnimation />
                 </div>
             </div>
+
+            <div className='flex flex-col gap-[2rem] mb-[-9rem] z-10'>
+                <div className='flex flex-col items-center gap-[0.7rem]'>
+                    <h2 className='font-[500] text-[36px]'>
+                        Unlock the <span className='text1-gradient'>Power of Code </span>
+                    </h2>
+                    <p className='text-richblack-200 mt-[-8px]'>Learn to Build Anything You Can Imagine</p>
+                </div>
+
+                <div>
+                    <ExploreSection />
+                </div>
+
+            </div>
+            
         </div>
     )
 }
