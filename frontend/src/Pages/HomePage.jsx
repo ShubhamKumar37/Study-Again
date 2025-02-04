@@ -1,9 +1,13 @@
 import React from 'react'
-import { Section1, Section2, Section3, Section4 } from '../components';
+import { NavBar, Section1, Section2, Section3, Section4 } from '../components';
 
 const HomePage = () => {
     return (
         <div className='flex flex-col '>
+            <div className='bg-richblack-900'>
+                <NavBar />
+            </div>
+
             {/* Section 1 */}
             <div className='bg-richblack-900'>
                 <Section1 />
@@ -21,7 +25,7 @@ const HomePage = () => {
             <div className='bg-richblack-900'>
                 <Section4 />
             </div>
-        </div >
+        </div>
     )
 }
 
