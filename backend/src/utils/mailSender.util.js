@@ -24,7 +24,7 @@ const mailSender = async (email, title, body) => {
             html: body
         }
         const mailResponse = await transporter.sendMail(mailOptions);
-        console.log("This is the mail response :: ", mailResponse, "\n This console.log() is present in utils/mailSender");
+        // console.log("This is the mail response :: ", mailResponse, "\n This console.log() is present in utils/mailSender");
 
         return mailResponse;
     }

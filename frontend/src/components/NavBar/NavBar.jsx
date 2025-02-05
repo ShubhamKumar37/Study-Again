@@ -15,7 +15,7 @@ const NavBar = () => {
                     NavbarLinks.map((item, index) => {
                         if (item.title === "Catalog") {
                             return (
-                                <li>
+                                <li key={index}>
                                     {item.title}
                                 </li>
                             )

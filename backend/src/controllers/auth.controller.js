@@ -12,7 +12,6 @@ const cookieOptions = {
 
 const sendOtp = asyncHandler(async (req, res) => {
     const { email } = req.body;
-    console.log("This is email = ", email);
 
     if (!email) throw new ApiError(400, "Please provide a email");
 

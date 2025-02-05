@@ -1,7 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavBar, Section1, Section2, Section3, Section4 } from '../components';
+import { useDispatch } from 'react-redux';
+import { sendOtp } from '../services/index.js';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const otpSendAlready = sessionStorage.getItem("otpSent");
+
+        if (!otpSendAlready) {
+            sessionStorage.setItem("otpSent", "true");
+            dispatch(sendOtp("sk9818281820@gmail.com", navigate));
+            setTimeout(() => {
+                sessionStorage.removeItem("otpSent");
+            }, 1000);
+        }
+    }, [dispatch, navigate]);
+
     return (
         <div className='flex flex-col '>
             <div className='bg-richblack-900'>
