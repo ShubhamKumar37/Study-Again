@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { HomePage } from "./imports.js";
+import { About, AuthPage, HomePage } from "./imports.js";
 import { store } from "./redux/store.js";
 import { Provider } from "react-redux";
 import "./index.css";
@@ -14,6 +14,9 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { index: true, element: <HomePage /> },
+      { path: "/login", element: <AuthPage flag={true} /> },
+      { path: "/signup", element: <AuthPage flag={false} /> },
+      { path: "/about", element: <About /> },
     ],
   }
 ]);
