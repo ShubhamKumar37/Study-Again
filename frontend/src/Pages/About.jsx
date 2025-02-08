@@ -1,5 +1,5 @@
 import React from 'react'
-import { AboutSection1, AboutSection2, AboutSection3, Quote } from '../components'
+import { AboutSection1, AboutSection2, AboutSection3, ContactUsForm, Quote } from '../components'
 
 const About = () => {
     return (
@@ -24,7 +24,7 @@ const About = () => {
                 <h1 className='text-white text-center text-3xl font-bold'>Get in Touch</h1>
                 <p className='text-white text-center text-lg font-bold'>We’d love to here for you, Please fill out this form.</p>
 
-                {/* <ContactForm /> */}
+                <ContactUsForm />
             </div>
         </div>
     )

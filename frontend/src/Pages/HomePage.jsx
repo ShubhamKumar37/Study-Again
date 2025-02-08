@@ -22,7 +22,6 @@ const HomePage = () => {
             <div className='bg-richblack-900'>
                 <Section4 />
             </div>
-            <FooterSection />
         </div>
     )
 }
