@@ -1,27 +1,44 @@
-import React from 'react'
-import { AuthRight } from '../components'
-import Image1 from "../assets/Images/login.webp"
+import React, { useState } from "react";
+import {
+  AuthForm,
+  AuthRight,
+  LoginHead,
+  RoleSlider,
+  SignupHead,
+} from "../components";
+import Image1 from "../assets/Images/login.webp";
+import Image2 from "../assets/Images/signup.webp";
+import Image3 from "../assets/Images/Instructor.png";
 
-const AuthPage = ({ flag }) => {
-    return (
-        <div className='bg-richblack-900 '>
-            <div className='w-10/12 h-screen mx-auto flex flex-row gap-[3rem] pt-[3rem] text-white'>
-                <div className='lg:w-[50%] w-[90%] mx-auto flex flex-col gap-[1.5rem]'>
-                    {flag && (
-                        <div></div>
-                    )}
-                    {!flag && (
-                        <div></div>
-                    )}
-                </div>
+const AuthPage = ({ type }) => {
+  const roleData = ["Student", "Instructor"];
+  const [role, setRole] = useState("Student");
 
-                <div className='lg:block hidden'>
-                    <AuthRight banner={Image1} />
-                    {/* <AuthRight banner={role === "Student" ? Image2 : (type === "login" ? Image1 : Image3)} /> */}
-                </div>
-            </div>
+  return (
+    <div className='bg-richblack-900'>
+      <div className='mx-auto flex h-fit w-10/12 flex-row gap-[3rem] py-[3rem] text-white'>
+        <div className='mx-auto flex w-[90%] flex-col gap-[1rem] lg:w-[50%]'>
+          {type && <LoginHead role={role} />}
+          {!type && (
+            <>
+              <SignupHead role={role} />
+              <RoleSlider role={role} setRole={setRole} roleData={roleData} />
+            </>
+          )}
+
+          <AuthForm type={type} role={role} />
         </div>
-    )
-}
 
-export default AuthPage
+        <div className='hidden lg:block'>
+          <AuthRight
+            banner={
+              role === "Student" ? Image2 : type === true ? Image1 : Image3
+            }
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AuthPage;

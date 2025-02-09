@@ -1,24 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    userData: localStorage.getItem("userData") ? JSON.parse(localStorage.getItem("userData")) : null,
-    // loading: false,
+  userData: localStorage.getItem("userData")
+    ? JSON.parse(localStorage.getItem("userData"))
+    : null,
+  // loading: false,
 };
 
 const userSlice = createSlice({
-    name: "user",
-    initialState,
-    reducers: {
-        // setLoading: (state, action) => {
-        //     state.loading = action.payload
-        // },
-        setUserDatata: (state, action) => {
-            state.userData = action.payload
-        },
-        resetUserData: (state) => {
-            state.userData = null
-        }
-    }
+  name: "user",
+  initialState,
+  reducers: {
+    // setLoading: (state, action) => {
+    //     state.loading = action.payload
+    // },
+    setUserDatata: (state, action) => {
+      state.userData = action.payload;
+    },
+    resetUserData: (state) => {
+      state.userData = null;
+    },
+  },
 });
 
 export const { setUserDatata, resetUserData } = userSlice.actions;

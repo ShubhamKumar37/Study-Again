@@ -7,7 +7,7 @@ export const FooterLink1 = [
       { title: "About", link: "/about" },
       { title: "Careers", link: "/career" },
       { title: "Affiliates", link: "/affiliates" },
-    ]
+    ],
   },
   {
     title: "Resources",
@@ -24,9 +24,7 @@ export const FooterLink1 = [
   },
   {
     title: "Support",
-    links: [
-      { title: "Help Center", link: "/help" }
-    ],
+    links: [{ title: "Help Center", link: "/help" }],
   },
   {
     title: "Plans",
@@ -44,7 +42,7 @@ export const FooterLink1 = [
       { title: "Events", link: "/event" },
     ],
   },
-]
+];
 
 export const FooterLink2 = [
   {
@@ -94,45 +92,46 @@ export const FooterLink2 = [
       { title: "Career paths", link: "/career-paths" },
       { title: "Career services", link: "/career-services" },
       { title: "Interview prep", link: "/interview-prep" },
-      { title: "Professional certification", link: "/professional-certification" },
+      {
+        title: "Professional certification",
+        link: "/professional-certification",
+      },
       { title: "Full Catalog", link: "/full-catalog" },
-      { title: "Beta Content", link: "/beta-content" }
-    ]
-  }
+      { title: "Beta Content", link: "/beta-content" },
+    ],
+  },
 ];
 
 export const FooterBottomText = [
   {
     title: "Privacy and Policy",
-    link: "/privacy"
+    link: "/privacy",
   },
   {
     title: "Cookie Policy",
-    link: "/cookie-policy"
+    link: "/cookie-policy",
   },
   {
     title: "Terms",
-    link: "/terms-and-condition"
+    link: "/terms-and-condition",
   },
-
 ];
 
 export const FooterLogoArray = [
   {
     icon: FaFacebook,
-    link: "https://www.facebook.com/"
+    link: "https://www.facebook.com/",
   },
   {
     icon: FaGoogle,
-    link: "https://www.google.com/"
+    link: "https://www.google.com/",
   },
   {
     icon: FaTwitter,
-    link: "https://www.twitter.com/"
+    link: "https://www.twitter.com/",
   },
   {
     icon: FaYoutube,
-    link: "https://www.youtube.com/"
+    link: "https://www.youtube.com/",
   },
-
 ];

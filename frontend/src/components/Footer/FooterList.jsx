@@ -1,18 +1,22 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import FooterText from './FooterText'
+import React from "react";
+import { Link } from "react-router-dom";
+import FooterText from "./FooterText";
 
 const FooterList = ({ data }) => {
   return (
     <ul className='flex flex-col gap-[10px]'>
       <li className='text-[#AFB2BF]'>{data.title}</li>
-      {
-        data.links.map((item, index) => {
-          return (<li key={index}><Link to={item.link}><FooterText text={item.title} /></Link></li>)
-        })
-      }
+      {data.links.map((item, index) => {
+        return (
+          <li key={index}>
+            <Link to={item.link}>
+              <FooterText text={item.title} />
+            </Link>
+          </li>
+        );
+      })}
     </ul>
-  )
-}
+  );
+};
 
-export default FooterList
+export default FooterList;

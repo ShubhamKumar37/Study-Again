@@ -1,33 +1,37 @@
-import React from 'react'
-import { useFormContext } from 'react-hook-form'
-import "../../css/allCss.css"
+import React from "react";
+import { useFormContext } from "react-hook-form";
+import "../../css/allCss.css";
 
-const SelectOption = ({ label, name, css = "", options = [], ...rest }) => {
+const SelectOption = ({
+  label,
+  name,
+  divCss = "",
+  css = "",
+  options = [],
+  ...rest
+}) => {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
 
-    const { register, formState: { errors } } = useFormContext();
+  return (
+    <div className={`${divCss}`}>
+      {label && <label>{label}</label>}
+      <select
+        {...register(name, { required: "This field is required" })}
+        {...rest}
+        className={`input-field-shadow w-full rounded-lg border-none bg-richblack-800 p-2 py-2 focus:outline-none ${css}`}
+      >
+        {options.map((item, index) => (
+          <option key={index} value={item.value}>
+            {item.label}
+          </option>
+        ))}
+      </select>
+      {errors[name] && <p className='text-red-500'>{errors[name].message}</p>}
+    </div>
+  );
+};
 
-    return (
-        <div>
-            {label && <label>{label}</label>}
-            <select
-                {...register(name, { required: true })}
-                {...rest}
-                className={`w-full p-2 py-2 bg-richblack-800 rounded-lg border-none focus:outline-none input-field-shadow ${css}`}
-            >
-                {
-                    options.map((item, index) => {
-                        return (
-                            <option
-                                key={index}
-                                value={item.value}
-                            >{item.name}</option>
-                        )
-                    })
-                }
-            </select>
-            {errors[name] && <p>{errors[name].message}</p>}
-        </div>
-    )
-}
-
-export default SelectOption
+export default SelectOption;

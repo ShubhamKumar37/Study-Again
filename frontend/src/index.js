@@ -14,11 +14,11 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: "/login", element: <AuthPage flag={true} /> },
-      { path: "/signup", element: <AuthPage flag={false} /> },
+      { path: "/login", element: <AuthPage type={true} /> },
+      { path: "/signup", element: <AuthPage type={false} /> },
       { path: "/about", element: <About /> },
     ],
-  }
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -28,5 +28,5 @@ root.render(
       <Toaster />
       <RouterProvider router={router} />
     </Provider>
-  </React.StrictMode >
+  </React.StrictMode>
 );
