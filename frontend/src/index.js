@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { About, AuthPage, HomePage } from "./imports.js";
+import { About, AuthPage, HomePage, VerifyEmail } from "./imports.js";
 import { store } from "./redux/store.js";
 import { Provider } from "react-redux";
 import "./index.css";
@@ -17,6 +17,7 @@ const router = createBrowserRouter([
       { path: "/login", element: <AuthPage type={true} /> },
       { path: "/signup", element: <AuthPage type={false} /> },
       { path: "/about", element: <About /> },
+      { path: "/verify-email", element: <VerifyEmail /> },
     ],
   },
 ]);

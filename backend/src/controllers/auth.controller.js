@@ -12,7 +12,6 @@ const cookieOptions = {
 
 const sendOtp = asyncHandler(async (req, res) => {
     const { email } = req.body;
-
     if (!email) throw new ApiError(400, "Please provide a email");
 
     const userExist = await User.findOne({ email });
@@ -101,6 +100,7 @@ const loginUser = asyncHandler(async (req, res) => {
     }, process.env.JWT_SECRET, { expiresIn: "10h" });
 
     userExist.token = token;
+    userExist.password = undefined;
 
     return res.cookie("token", token, cookieOptions).status(200).json(
         new ApiResponse(200, "User loggedIn successfully", userExist)

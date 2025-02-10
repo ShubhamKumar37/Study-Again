@@ -1,28 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+const initalState = {
+  avatar: localStorage.getItem("avatar")
+    ? JSON.parse(localStorage.getItem("avatar"))
+    : null,
   userData: localStorage.getItem("userData")
     ? JSON.parse(localStorage.getItem("userData"))
     : null,
-  // loading: false,
 };
 
 const userSlice = createSlice({
   name: "user",
-  initialState,
+  initialState: initalState,
   reducers: {
-    // setLoading: (state, action) => {
-    //     state.loading = action.payload
-    // },
-    setUserDatata: (state, action) => {
-      state.userData = action.payload;
+    setAvatar: (state, action) => {
+      state.avatar = action.payload;
+      localStorage.setItem("avatar", JSON.stringify(action.payload));
     },
-    resetUserData: (state) => {
-      state.userData = null;
+    setUserData: (state, action) => {
+      state.userData = action.payload;
+      localStorage.setItem("userData", JSON.stringify(action.payload));
     },
   },
 });
 
-export const { setUserDatata, resetUserData } = userSlice.actions;
-
+export const { setAvatar, setUserData } = userSlice.actions;
 export default userSlice.reducer;

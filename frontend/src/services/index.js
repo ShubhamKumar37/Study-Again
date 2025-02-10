@@ -1,3 +1,3 @@
-import { loginUser, sendOtp } from "./operation/userApi";
+import { loginUser, logoutUser, sendOtp } from "./operation/userApi";
 
-export { loginUser, sendOtp };
+export { loginUser, sendOtp, logoutUser };

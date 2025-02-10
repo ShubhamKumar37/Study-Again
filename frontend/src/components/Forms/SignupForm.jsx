@@ -2,19 +2,31 @@ import React, { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { Input, MobileNumberInput, YellowBtn } from "../index.js";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { sendOtp } from "../../services/index.js";
+import toast from "react-hot-toast";
 
 const SignupForm = ({ role }) => {
   const methods = useForm();
   const [showPassword, setShowPassword] = useState(false);
   const [confirmShowPassword, setConfirmShowPassword] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const togglePassword = () => setShowPassword(!showPassword);
   const toggleConfirmPassword = () =>
     setConfirmShowPassword(!confirmShowPassword);
 
   const submitSignupForm = (data) => {
-    data.role = role;
-    console.log("This is the data of login form = ", data);
+    data.accountType = role;
+    console.log("This is signup form data = ", data);
+    if (data.password !== data.confirmPassword) {
+      toast.error("Incorrect password");
+      return;
+    }
+
+    dispatch(sendOtp(data, navigate));
   };
 
   return (

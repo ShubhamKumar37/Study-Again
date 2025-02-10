@@ -2,16 +2,23 @@ import React, { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { Input, YellowBtn } from "../index.js";
+import { loginUser } from "../../services/index.js";
+import { useDispatch } from "react-redux";
+// import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = ({ role }) => {
   const methods = useForm();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  // const { token } = useSelector((state) => state.auth);
 
   const togglePassword = () => setShowPassword(!showPassword);
 
-  const submitLoginForm = (data) => {
+  const submitLoginForm = async (data) => {
     data.role = role;
-    console.log("This is the data of login form = ", data);
+    dispatch(loginUser(data, navigate));
   };
 
   return (
