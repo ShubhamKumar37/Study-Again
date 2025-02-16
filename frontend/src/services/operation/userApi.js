@@ -22,12 +22,12 @@ export const loginUser = (credentials, navigate) => {
         "Fail to login"
       );
 
-      if (response.status === 200) {
+      if (response) {
         dispatch(setToken(response?.data?.data?.token));
         dispatch(setUserData(response?.data?.data));
         dispatch(setAvatar(response?.data?.data?.image));
+        navigate("/");
       }
-      navigate("/");
     } catch (error) {
       console.log("Error occur while fetching user (getUser.js) :: ", error);
     }
@@ -37,7 +37,7 @@ export const loginUser = (credentials, navigate) => {
 export const sendOtp = (userData, navigate) => {
   return async (dispatch) => {
     const res = apiCall("post", SENDOTP_USER, { email: userData.email });
-    await toastHandler(
+    const response = await toastHandler(
       res,
       "Sending OTP...",
       "OTP send successfully",
@@ -45,7 +45,10 @@ export const sendOtp = (userData, navigate) => {
     );
 
     dispatch(setSignupData(userData));
-    navigate("/verify-email");
+    console.log("This is signupData from operation = ", userData);
+
+    if (response) navigate("/verify-email");
+    console.log("This is sendotp response = ", response);
   };
 };
 
@@ -59,11 +62,11 @@ export const signupUser = (userData, navigate) => {
       "Fail to signup"
     );
 
-    if (response.status === 200) {
+    if (response) {
       dispatch(setSignupData(null));
-      console.log("This is the signup response = ", response);
+      navigate("/login");
     }
-    navigate("/login");
+    console.log("This is the signup response = ", response);
   };
 };
 

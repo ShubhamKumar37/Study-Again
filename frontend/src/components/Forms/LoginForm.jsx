@@ -6,6 +6,7 @@ import { loginUser } from "../../services/index.js";
 import { useDispatch } from "react-redux";
 // import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const LoginForm = ({ role }) => {
   const methods = useForm();
@@ -62,6 +63,10 @@ const LoginForm = ({ role }) => {
           </div>
 
           <YellowBtn text={"Login"} />
+
+          <div>
+            <Link to={"/forget-password"}>Forgot Password</Link>
+          </div>
         </form>
       </FormProvider>
     </div>

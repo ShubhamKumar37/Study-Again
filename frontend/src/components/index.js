@@ -9,6 +9,7 @@ import SignupHead from "./Auth/SignupHead";
 import FooterSection from "./Footer/FooterSection";
 import ContactUsForm from "./Forms/ContactUsForm";
 import LoginForm from "./Forms/LoginForm";
+import ForgetPassword from "./Forms/ForgetPassword";
 import SignupForm from "./Forms/SignupForm";
 import Section1 from "./Home/Section1";
 import Section2 from "./Home/Section2";
@@ -48,4 +49,5 @@ export {
   LoginHead,
   SignupHead,
   MobileNumberInput,
+  ForgetPassword,
 };

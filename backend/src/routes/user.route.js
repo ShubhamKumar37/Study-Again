@@ -9,7 +9,7 @@ const userRouter = Router();
 
 userRouter.put("/", loginUser); // Working
 userRouter.post("/", signupUser); // Working
-userRouter.put("/logout", auth, logoutUser); // Working
+userRouter.put("/logout", logoutUser); // Working
 userRouter.post("/sendotp", sendOtp); // Working
 
 userRouter.put("/password-change", auth, changePassword); // Working

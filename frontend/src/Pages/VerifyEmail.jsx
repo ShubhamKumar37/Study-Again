@@ -5,17 +5,18 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaArrowLeftLong, FaClockRotateLeft } from "react-icons/fa6";
 import { sendOtp } from "../services";
 import { FormProvider, useForm, Controller } from "react-hook-form";
+import { signupUser } from "../services/index.js";
 
 const VerifyEmail = () => {
   const { signupData } = useSelector((state) => state.auth);
   const methods = useForm();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log("This is signup data - >", signupData);
 
   // Handle form submission
   function submitHandler(data) {
-    console.log("This is the form data = ", data);
+    const newData = { ...signupData, otp: data.OTP };
+    dispatch(signupUser(newData, navigate));
   }
 
   return (
@@ -75,7 +76,7 @@ const VerifyEmail = () => {
           </Link>
 
           <button
-            onClick={() => dispatch(sendOtp(signupData.email, navigate))}
+            onClick={() => dispatch(sendOtp(signupData, navigate))}
             className='flex items-center gap-1 text-blue-300'
           >
             <FaClockRotateLeft />
