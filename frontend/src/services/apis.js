@@ -5,7 +5,7 @@ export const userAuthApis = {
   SENDOTP_USER: "/user/sendotp",
   PASSWORD_CHANGE_USER: "/user/password-change",
   PASSWORD_TOKEN_USER: "/user/password-token",
-  PASSWORD_TOKEN_RESET_USER: "/user/password-reset",
+  PASSWORD_RESET_USER: "/user/password-reset",
 };
 
 export const courseApis = {
