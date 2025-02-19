@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
-import toast from 'react-hot-toast';
-import { useDispatch } from 'react-redux'
-import { useLocation, useNavigate } from 'react-router-dom';
-import { Input, YellowBtn } from '../components';
+import React, { useState } from "react";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Input, YellowBtn } from "../components";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
-import { FormProvider, useForm } from 'react-hook-form';
-import { apiCall } from '../services/apiConnector';
-import { toastHandler } from '../utils/toastHandler';
-import { userAuthApis } from '../services/apis';
+import { FormProvider, useForm } from "react-hook-form";
+import { apiCall } from "../services/apiConnector";
+import { toastHandler } from "../utils/toastHandler";
+import { userAuthApis } from "../services/apis";
 
 const ChangePassword = ({ flag }) => {
   const methods = useForm();
@@ -17,7 +17,8 @@ const ChangePassword = ({ flag }) => {
   const location = useLocation();
 
   const togglePassword = () => setShowPassword(!showPassword);
-  const toggleConfirmPassword = () => setConfirmShowPassword(!confirmShowPassword);
+  const toggleConfirmPassword = () =>
+    setConfirmShowPassword(!confirmShowPassword);
 
   let passToken = location.pathname.split("/");
   passToken = passToken[passToken.length - 1];
@@ -27,25 +28,33 @@ const ChangePassword = ({ flag }) => {
       if (data.password !== data.confirmPassword) {
         return toast.error("Password doesn't match");
       }
-      const res = apiCall("put", `${userAuthApis.PASSWORD_RESET_USER}/${passToken}`, data);
+      const res = apiCall(
+        "put",
+        `${userAuthApis.PASSWORD_RESET_USER}/${passToken}`,
+        data
+      );
       const response = await toastHandler(
         res,
         "Changing Password...",
         "Password changed successfully",
         "Fail to change Password"
       );
-      console.log("This is the resonse of change password = ", response);
+      navigate("/login");
     }
   };
 
   return (
-    <div className=' w-screen h-screen flex bg-richblack-900 justify-center pt-[4rem] p-5'>
-      <div className='text-white flex flex-col gap-3'>
-
+    <div className='flex h-screen w-screen justify-center bg-richblack-900 p-5 pt-[4rem]'>
+      <div className='flex flex-col gap-3 text-white'>
         <h1 className='text-2xl font-bold'>Choose New Password</h1>
-        <p className='text-richblack-200'>Almost done. Enter your new password and your all set.</p>
+        <p className='text-richblack-200'>
+          Almost done. Enter your new password and your all set.
+        </p>
         <FormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(submitHandler)} className='flex flex-col gap-3'>
+          <form
+            onSubmit={methods.handleSubmit(submitHandler)}
+            className='flex flex-col gap-3'
+          >
             <div className='relative'>
               <Input
                 name={"password"}
@@ -92,7 +101,7 @@ const ChangePassword = ({ flag }) => {
         </FormProvider>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ChangePassword
+export default ChangePassword;

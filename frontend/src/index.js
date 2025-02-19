@@ -25,7 +25,10 @@ const router = createBrowserRouter([
       { path: "/signup", element: <AuthPage type={false} /> },
       { path: "/about", element: <About /> },
       { path: "/verify-email", element: <VerifyEmail /> },
-      { path: "/update-password/:token", element: <ChangePassword flag={false} /> },
+      {
+        path: "/update-password/:token",
+        element: <ChangePassword flag={false} />,
+      },
       { path: "/forget-password", element: <ForgetPassword /> },
     ],
   },
