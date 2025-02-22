@@ -24,6 +24,7 @@ import SelectOption from "./ui/SelectOption";
 import TextArea from "./ui/TextArea";
 import YellowBtn from "./ui/YellowBtn";
 import ProtectedRoute from "./Auth/ProtectedRoute";
+import Sidebar from "./Dashboard/Sidebar";
 
 export {
   BlackBtn,
@@ -52,4 +53,5 @@ export {
   MobileNumberInput,
   ForgetPassword,
   ProtectedRoute,
+  Sidebar,
 };

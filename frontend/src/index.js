@@ -32,7 +32,9 @@ const router = createBrowserRouter([
         element: <ChangePassword flag={false} />,
       },
       { path: "/forget-password", element: <ForgetPassword /> },
-      { path: "/dashboard", element: <ProtectedRoute> <Dashboard /> </ProtectedRoute> },
+      { path: "/dashboard",
+        element: <ProtectedRoute> <Dashboard /> </ProtectedRoute>,
+       },
     ],
   },
 ]);
