@@ -9,11 +9,13 @@ import {
   HomePage,
   ForgetPassword,
   VerifyEmail,
+  Dashboard,
 } from "./imports.js";
 import { store } from "./redux/store.js";
 import { Provider } from "react-redux";
 import "./index.css";
 import { Toaster } from "react-hot-toast";
+import { ProtectedRoute } from "./components/index.js";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +32,7 @@ const router = createBrowserRouter([
         element: <ChangePassword flag={false} />,
       },
       { path: "/forget-password", element: <ForgetPassword /> },
+      { path: "/dashboard", element: <ProtectedRoute> <Dashboard /> </ProtectedRoute> },
     ],
   },
 ]);

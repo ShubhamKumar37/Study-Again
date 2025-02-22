@@ -23,6 +23,7 @@ import RoleSlider from "./ui/RoleSlider";
 import SelectOption from "./ui/SelectOption";
 import TextArea from "./ui/TextArea";
 import YellowBtn from "./ui/YellowBtn";
+import ProtectedRoute from "./Auth/ProtectedRoute";
 
 export {
   BlackBtn,
@@ -50,4 +51,5 @@ export {
   SignupHead,
   MobileNumberInput,
   ForgetPassword,
+  ProtectedRoute,
 };
