@@ -8,6 +8,7 @@ const TextArea = ({
   divCss = "",
   css = "",
   rows = 4,
+  required = true,
   ...rest
 }) => {
   const {
@@ -19,7 +20,7 @@ const TextArea = ({
     <div className={`${divCss}`}>
       {label && <label>{label}</label>}
       <textarea
-        {...register(name, { required: true })}
+        {...register(name, { required: required })}
         rows={rows}
         {...rest}
         className={`input-field-shadow w-full rounded-lg border-none bg-richblack-800 p-2 py-2 focus:outline-none ${css}`}

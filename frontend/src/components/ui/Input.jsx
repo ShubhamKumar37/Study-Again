@@ -9,6 +9,7 @@ const Input = ({
   divCss = "",
   css = "",
   type = "text",
+  required = true,
   ...rest
 }) => {
   const {
@@ -20,7 +21,7 @@ const Input = ({
     <div className={`${divCss}`}>
       {label && <label className='mb-1 text-sm'>{label}</label>}
       <input
-        {...register(name, { required: true })}
+        {...register(name, { required: required })}
         type={type}
         {...rest}
         placeholder={placeholder}

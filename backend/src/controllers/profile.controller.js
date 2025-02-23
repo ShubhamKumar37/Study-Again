@@ -12,7 +12,7 @@ const updateProfile = asyncHandler(async (req, res) => {
 
     const updateduser = await User.findByIdAndUpdate(userId, {
         $set: dataUpdateValues
-    }, { new: true }).select("-password -token -resetPasswordExpires");
+    }, { new: true }).select("-password -token -resetPasswordExpires").lean();
     if (!updateduser) throw new ApiError(404, "User does not exist");
 
     dataUpdateValues = {};
@@ -25,8 +25,10 @@ const updateProfile = asyncHandler(async (req, res) => {
         $set: dataUpdateValues
     }, { new: true });
 
+    updateduser.additionalDetails = updatedProfile;
+
     return res.status(200).json(
-        new ApiResponse(200, "Profile updated successfully", { updateduser, updatedProfile })
+        new ApiResponse(200, "Profile updated successfully", updateduser)
     );
 });
 

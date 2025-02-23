@@ -2,7 +2,7 @@ import React from "react";
 import { Input, SelectOption } from "../index.js";
 import countryData from "../../data/countrycode.json";
 
-const MobileNumberInput = () => {
+const MobileNumberInput = ({ required = true }) => {
   return (
     <div className='flex flex-row items-center gap-3'>
       <SelectOption
@@ -29,6 +29,7 @@ const MobileNumberInput = () => {
         type={"tel"}
         placeholder={"Enter your mobile number"}
         divCss='w-[75%]'
+        required={required}
       />
     </div>
   );

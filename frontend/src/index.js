@@ -15,7 +15,7 @@ import { store } from "./redux/store.js";
 import { Provider } from "react-redux";
 import "./index.css";
 import { Toaster } from "react-hot-toast";
-import { MyProfile, ProtectedRoute } from "./components/index.js";
+import { MyProfile, ProtectedRoute, Setting } from "./components/index.js";
 
 const router = createBrowserRouter([
   {
@@ -34,10 +34,32 @@ const router = createBrowserRouter([
       { path: "/forget-password", element: <ForgetPassword /> },
       {
         path: "/dashboard",
-        element: <ProtectedRoute> <Dashboard /> </ProtectedRoute>,
+        element: (
+          <ProtectedRoute>
+            {" "}
+            <Dashboard />{" "}
+          </ProtectedRoute>
+        ),
         children: [
-          { path: "/dashboard/my-profile", element: <ProtectedRoute> <MyProfile /> </ProtectedRoute> },
-        ]
+          {
+            path: "/dashboard/my-profile",
+            element: (
+              <ProtectedRoute>
+                {" "}
+                <MyProfile />{" "}
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: "/dashboard/setting",
+            element: (
+              <ProtectedRoute>
+                {" "}
+                <Setting />{" "}
+              </ProtectedRoute>
+            ),
+          },
+        ],
       },
     ],
   },

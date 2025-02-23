@@ -8,6 +8,7 @@ const SelectOption = ({
   divCss = "",
   css = "",
   options = [],
+  required = true,
   ...rest
 }) => {
   const {
@@ -19,12 +20,12 @@ const SelectOption = ({
     <div className={`${divCss}`}>
       {label && <label>{label}</label>}
       <select
-        {...register(name, { required: "This field is required" })}
+        {...register(name, { required: required })}
         {...rest}
         className={`input-field-shadow w-full rounded-lg border-none bg-richblack-800 p-2 py-2 focus:outline-none ${css}`}
       >
         {options.map((item, index) => (
-          <option key={index} value={item.value}>
+          <option key={index} value={item.value} className={``}>
             {item.label}
           </option>
         ))}

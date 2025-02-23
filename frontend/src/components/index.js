@@ -26,6 +26,7 @@ import YellowBtn from "./ui/YellowBtn";
 import ProtectedRoute from "./Auth/ProtectedRoute";
 import Sidebar from "./Dashboard/Sidebar";
 import MyProfile from "./Dashboard/MyProfile/MyProfile";
+import Setting from "./Dashboard/Setting/Setting";
 
 export {
   BlackBtn,
@@ -56,4 +57,5 @@ export {
   ProtectedRoute,
   Sidebar,
   MyProfile,
+  Setting,
 };
