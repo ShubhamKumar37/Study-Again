@@ -25,6 +25,7 @@ import TextArea from "./ui/TextArea";
 import YellowBtn from "./ui/YellowBtn";
 import ProtectedRoute from "./Auth/ProtectedRoute";
 import Sidebar from "./Dashboard/Sidebar";
+import MyProfile from "./Dashboard/MyProfile/MyProfile";
 
 export {
   BlackBtn,
@@ -54,4 +55,5 @@ export {
   ForgetPassword,
   ProtectedRoute,
   Sidebar,
+  MyProfile,
 };
