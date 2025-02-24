@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 
 const MyProfile = () => {
   const user = useSelector((state) => state.user.userData);
+  const avatar = useSelector((state) => state.user.avatar);
   console.log("This is user data = ", user);
   const navigate = useNavigate();
 
@@ -17,7 +18,7 @@ const MyProfile = () => {
       <div className='flex flex-col gap-[1rem]'>
         <div className='mb-8 flex items-center rounded-lg bg-richblack-800 p-4 shadow-md'>
           <img
-            src={`${user?.image}`}
+            src={`${avatar}`}
             alt='User'
             className='h-20 w-20 rounded-full'
           />

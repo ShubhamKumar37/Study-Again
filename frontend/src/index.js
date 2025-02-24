@@ -10,6 +10,7 @@ import {
   ForgetPassword,
   VerifyEmail,
   Dashboard,
+  PageNotFound,
 } from "./imports.js";
 import { store } from "./redux/store.js";
 import { Provider } from "react-redux";
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { index: true, element: <HomePage /> },
+      { path: "/*", element: <PageNotFound /> },
       { path: "/login", element: <AuthPage type={true} /> },
       { path: "/signup", element: <AuthPage type={false} /> },
       { path: "/about", element: <About /> },

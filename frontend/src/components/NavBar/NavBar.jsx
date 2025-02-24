@@ -56,7 +56,7 @@ const NavBar = () => {
                   onMouseLeave={() => setShowDropdown(false)}
                 >
                   <Link to={`/dashboard`}>Dashboard</Link>
-                  <Link to={`/profile`}>Profile</Link>
+                  <Link to={`/dashboard/my-profile`}>Profile</Link>
                   <div
                     onClick={() => {
                       dispatch(logoutUser(navigate));
