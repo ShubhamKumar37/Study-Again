@@ -16,7 +16,7 @@ import { store } from "./redux/store.js";
 import { Provider } from "react-redux";
 import "./index.css";
 import { Toaster } from "react-hot-toast";
-import { MyProfile, ProtectedRoute, Setting } from "./components/index.js";
+import { CourseBuilder, MyProfile, ProtectedRoute, Setting } from "./components/index.js";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +58,15 @@ const router = createBrowserRouter([
               <ProtectedRoute>
                 {" "}
                 <Setting />{" "}
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: "/dashboard/add-course",
+            element: (
+              <ProtectedRoute>
+                {" "}
+                <CourseBuilder />{" "}
               </ProtectedRoute>
             ),
           },

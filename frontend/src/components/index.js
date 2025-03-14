@@ -27,6 +27,8 @@ import ProtectedRoute from "./Auth/ProtectedRoute";
 import Sidebar from "./Dashboard/Sidebar";
 import MyProfile from "./Dashboard/MyProfile/MyProfile";
 import Setting from "./Dashboard/Setting/Setting";
+import CourseBuilder from "./Dashboard/CreateCourse/CourseBuilder";
+import RichTextEditor from "./ui/RichTextEditor";
 
 export {
   BlackBtn,
@@ -58,4 +60,6 @@ export {
   Sidebar,
   MyProfile,
   Setting,
+  CourseBuilder,
+  RichTextEditor,
 };

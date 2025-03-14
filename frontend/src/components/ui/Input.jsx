@@ -19,7 +19,7 @@ const Input = ({
 
   return (
     <div className={`${divCss}`}>
-      {label && <label className='mb-1 text-sm'>{label}</label>}
+      {label && <label className='mb-1 text-lg'>{label}</label>}
       <input
         {...register(name, { required: required })}
         type={type}
